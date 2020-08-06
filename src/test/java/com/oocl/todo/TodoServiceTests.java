@@ -62,5 +62,11 @@ class TodoServiceTests {
         assertEquals(updateTodo.getContent(), updatedTodo.getContent());
     }
 
-
+    @Test
+    void should_return_null_when_update_todo_by_id_given_todo() {
+        Todo updateTodo = new Todo("花花", false);
+        given(todoRepository.findById(anyInt())).willReturn(Optional.empty());
+        Todo updatedTodo = todoService.updateTodoById(anyInt(), updateTodo);
+        assertNull(updatedTodo);
+    }
 }
