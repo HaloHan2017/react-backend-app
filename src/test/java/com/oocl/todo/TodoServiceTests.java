@@ -46,4 +46,21 @@ class TodoServiceTests {
         Todo foundTodo = todoService.getTodoById(anyInt());
         assertNull(foundTodo);
     }
+
+    @Test
+    void should_return_when_delete_todo_by_id_given_id() {
+    }
+
+    @Test
+    void should_return_todo_when_update_todo_by_id_given_todo() {
+        Todo todo = new Todo(3, "飞飞", false);
+        Todo updateTodo = new Todo("花花", false);
+        given(todoRepository.findById(anyInt())).willReturn(Optional.of(todo));
+        given(todoRepository.save(any())).willReturn(updateTodo);
+        Todo updatedTodo = todoService.updateTodoById(anyInt(), updateTodo);
+        assertEquals(updateTodo.getId(), updatedTodo.getId());
+        assertEquals(updateTodo.getContent(), updatedTodo.getContent());
+    }
+
+
 }
