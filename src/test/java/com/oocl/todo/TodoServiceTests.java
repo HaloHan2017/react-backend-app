@@ -8,7 +8,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
 class TodoServiceTests {
@@ -19,7 +22,10 @@ class TodoServiceTests {
 
     @Test
     void should_return_todo_when_add_todo_given_todo() {
-        Todo todo = todoService.addTodo(new Todo());
+        Todo addTodo = new Todo("hahahhaha");
+        given(todoRepository.save(any())).willReturn(new Todo(1, "hahahhaha", false));
+        Todo todo = todoService.addTodo(addTodo);
         assertNotNull(todo);
+        assertEquals(addTodo.getContent(), todo.getContent());
     }
 }

@@ -13,6 +13,6 @@ public class TodoService {
     }
 
     public Todo addTodo(Todo todo) {
-        return new Todo();
+        return todoRepository.save(todo);
     }
 }

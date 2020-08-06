@@ -10,16 +10,25 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String value;
-    private Boolean completed;
+    private String content;
+    private Boolean status;
 
     public Todo() {
     }
 
-    public Todo(Integer id, String value, Boolean completed) {
+    public Todo(String content) {
+        this.content = content;
+    }
+
+    public Todo(String content, Boolean status) {
+        this.content = content;
+        this.status = status;
+    }
+
+    public Todo(Integer id, String content, Boolean status) {
         this.id = id;
-        this.value = value;
-        this.completed = completed;
+        this.content = content;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -30,19 +39,19 @@ public class Todo {
         this.id = id;
     }
 
-    public String getValue() {
-        return value;
+    public String getContent() {
+        return content;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
