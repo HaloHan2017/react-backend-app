@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "*")
 @RestController
 public class TodoController {
     private final TodoService todoService;
@@ -30,7 +31,7 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public Todo updateTodoById(@PathVariable Integer id) {
+    public Todo updateTodoById(@PathVariable Integer id,@RequestBody Todo todo) {
         return null;
     }
 
