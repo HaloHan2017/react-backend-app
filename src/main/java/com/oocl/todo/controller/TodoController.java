@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RestController
 public class TodoController {
     private final TodoService todoService;
@@ -22,20 +22,21 @@ public class TodoController {
 
     @GetMapping
     public List<Todo> getTodoList() {
-        return null;
+        return todoService.getTodoList();
     }
 
     @GetMapping("/{id}")
-    public List<Todo> getTodoById(@PathVariable Integer id) {
-        return null;
+    public Todo getTodoById(@PathVariable Integer id) {
+        return todoService.getTodoById(id);
     }
 
     @PutMapping("/{id}")
-    public Todo updateTodoById(@PathVariable Integer id,@RequestBody Todo todo) {
-        return null;
+    public Todo updateTodoById(@PathVariable Integer id, @RequestBody Todo todo) {
+        return todoService.updateTodoById(id, todo);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTodoById(@PathVariable Integer id) {
+        todoService.deleteTodoById(id);
     }
 }
