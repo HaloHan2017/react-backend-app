@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 class TodoServiceTests {
@@ -49,6 +50,9 @@ class TodoServiceTests {
 
     @Test
     void should_return_when_delete_todo_by_id_given_id() {
+        todoService.deleteTodoById(anyInt());
+        // then
+        verify(todoRepository).deleteById(any());
     }
 
     @Test
