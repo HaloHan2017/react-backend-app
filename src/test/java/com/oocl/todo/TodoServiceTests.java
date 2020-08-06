@@ -8,6 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,5 +30,12 @@ class TodoServiceTests {
         Todo todo = todoService.addTodo(addTodo);
         assertNotNull(todo);
         assertEquals(addTodo.getContent(), todo.getContent());
+    }
+
+    @Test
+    void should_return_todo_list_when_get_todo_list_given_nothing() {
+        given(todoRepository.findAll()).willReturn(Collections.emptyList());
+        List<Todo> todoList = todoService.getTodoList();
+        assertEquals(0, todoList.size());
     }
 }
