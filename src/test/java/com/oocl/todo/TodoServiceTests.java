@@ -10,10 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
@@ -37,5 +38,12 @@ class TodoServiceTests {
         given(todoRepository.findAll()).willReturn(Collections.emptyList());
         List<Todo> todoList = todoService.getTodoList();
         assertEquals(0, todoList.size());
+    }
+
+    @Test
+    void should_return_a_todo_when_get_todo_by_id_given_id() {
+        given(todoRepository.findById(anyInt())).willReturn(Optional.empty());
+        Todo foundTodo = todoService.getTodoById(anyInt());
+        assertNull(foundTodo);
     }
 }

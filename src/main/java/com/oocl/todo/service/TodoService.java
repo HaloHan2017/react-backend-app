@@ -21,4 +21,8 @@ public class TodoService {
     public List<Todo> getTodoList() {
         return todoRepository.findAll();
     }
+
+    public Todo getTodoById(int id) {
+        return todoRepository.findById(id).orElse(null);
+    }
 }
