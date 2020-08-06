@@ -1,7 +1,10 @@
 package com.oocl.todo.controller;
 
+import com.oocl.todo.model.Todo;
 import com.oocl.todo.service.TodoService;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TodoController {
@@ -9,5 +12,29 @@ public class TodoController {
 
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
+    }
+
+    @PostMapping
+    public Todo addTodo(@RequestBody Todo todo) {
+        return todoService.addTodo(todo);
+    }
+
+    @GetMapping
+    public List<Todo> getTodoList() {
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public List<Todo> getTodoById(@PathVariable Integer id) {
+        return null;
+    }
+
+    @PutMapping("/{id}")
+    public Todo updateTodoById(@PathVariable Integer id) {
+        return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTodoById(@PathVariable Integer id) {
     }
 }
